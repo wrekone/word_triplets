@@ -60,19 +60,21 @@ def triple_count(arr):
 	return triple_count
 
 # I think I'm handling the file wrong, causing it to swell to a massive size.
-def close(triple_count):
+def close(output_text):
 	with open("output.txt", "w") as f:
-		for triple in triple_count:
-			f.write(f"{triple_count}\n")
+		for triple in output_text:
+			f.write(f"{triple}\n")
 
 words = text_input()
 # moby_dick = text_open(file)
 words_list = text_transform(words)
 words_triples = text_triple_maker(words_list)
 words_triples_count = triple_count(words_triples)
-with open("output_stdin.txt", "w") as f:
-	for triple in words_triples_count:
-		f.write(f"{triple}\n")
+close(words_triples_count)
+
+#with open("output.txt", "w") as f:
+#	for triple in words_triples_count:
+#		f.write(f"{triple}\n")
 #close(moby_triples_count)
 
 # Alternatively, you could nest the fuction calls like the following:
