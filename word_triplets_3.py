@@ -2,7 +2,7 @@
 from collections import Counter
 # Import re for regex functions.
 import re
-# Import sys for extension of standard library
+# Import sys for access to system specific parameters and functions.
 import sys
 
 # Don't forget to accept streams OR files.
@@ -12,20 +12,28 @@ import sys
 # Strings to test against: "one of the" (text contains: "bone of the", "one of them", "none of them", etc.)
 # Am I picking up partial words, such as "sea" in the phrase "of the seamen"?
 # Check for consistency of quote marks.
+# Create class "PhraseCount" to hold functions.
 
+# Try the 'fileinput' module to read from stdin.
+# import fileinput
 
-file = "moby_dick.txt"
-
-# Parse command line
-#if file_name_given:
-#	text = open(file_name_given)
-#else:
-#	text = sys.stdin
+#file = "moby_dick_snippet.txt"
 
 def text_open(file_name):
 	with open(file_name) as f:
 		text = f.read()
-		return text
+	return text
+
+def text_input():
+	# sys.stdin.isatty() returns false if there's something in stdin
+	if not sys.stdin.isatty():
+		text = sys.stdin.read()
+	elif sys.argv[1]:
+		text = text_open(sys.argv[1])
+	# Should probably be error handling here.
+	else:
+		print("Error: Please submit text to process as file or stream.")
+	return text
 
 def text_transform(text):
 	text = text.lower()
@@ -36,9 +44,10 @@ def text_transform(text):
 	return text_arr
 
 def text_triple_maker(arr):
+	# Double check this reaches end of text.
 	x, y = 0, 3
 	triples_list = []
-	while x < len(arr) - 2:
+	while y <= len(arr):
 		triple = (arr[x:y])
 		triple_string = " ".join(triple)
 		triples_list.append(triple_string)
@@ -56,16 +65,17 @@ def close(triple_count):
 		for triple in triple_count:
 			f.write(f"{triple_count}\n")
 
-moby_dick = text_open(file)
-moby_list = text_transform(moby_dick)
-moby_triples = text_triple_maker(moby_list)
-moby_triples_count = triple_count(moby_triples)
-with open("output.txt", "w") as f:
-	for triple in moby_triples_count:
+words = text_input()
+# moby_dick = text_open(file)
+words_list = text_transform(words)
+words_triples = text_triple_maker(words_list)
+words_triples_count = triple_count(words_triples)
+with open("output_stdin.txt", "w") as f:
+	for triple in words_triples_count:
 		f.write(f"{triple}\n")
 #close(moby_triples_count)
 
 # Alternatively, you could nest the fuction calls like the following:
-# moby_triples_count = triple_count(text_triple_maker(text_transform(text_open(file))))
-# print(moby_triples_count)
+# words_triples_count = triple_count(text_triple_maker(text_transform(text_open(file))))
+# print(words_triples_count)
 
