@@ -5,19 +5,14 @@ import re
 # Import sys for access to system specific parameters and functions.
 import sys
 
-# Don't forget to accept streams OR files.
+# Don't forget to accept streams OR files. DONE!
 # Don't forget to write documentation for project, classes, and functions.
 # Don't forget to create test cases.
 # Don't forget to update or delete comments.
 # Strings to test against: "one of the" (text contains: "bone of the", "one of them", "none of them", etc.)
 # Am I picking up partial words, such as "sea" in the phrase "of the seamen"?
 # Check for consistency of quote marks.
-# Create class "PhraseCount" to hold functions.
-
-# Try the 'fileinput' module to read from stdin.
-# import fileinput
-
-#file = "moby_dick_snippet.txt"
+# Create class "PhraseCount" or "TripCheck" or "TripletsCounter" to hold functions.
 
 def text_open(file_name):
 	"""Read file contents."""
