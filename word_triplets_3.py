@@ -20,11 +20,13 @@ import sys
 #file = "moby_dick_snippet.txt"
 
 def text_open(file_name):
+	"""Read file contents."""
 	with open(file_name) as f:
 		text = f.read()
 	return text
 
 def text_input():
+	"""Take input from file or stream."""
 	# sys.stdin.isatty() returns false if there's something in stdin
 	if not sys.stdin.isatty():
 		text = sys.stdin.read()
@@ -36,6 +38,7 @@ def text_input():
 	return text
 
 def text_transform(text):
+	"""Prepare text for processing."""
 	text = text.lower()
 	text = re.sub(r"[\-\",.;:!?—“”]+", " ", text)
 	# Replace stupid fancy single quotes. Edge cases galore here so write good tests!
@@ -44,6 +47,7 @@ def text_transform(text):
 	return text_arr
 
 def text_triple_maker(arr):
+	"""Create list of all triples from text."""
 	# Double check this reaches end of text.
 	x, y = 0, 3
 	triples_list = []
@@ -56,26 +60,21 @@ def text_triple_maker(arr):
 	return triples_list
 
 def triple_count(arr):
+	"""Count triples and sort by most common."""
 	triple_count = Counter(arr).most_common()
 	return triple_count
 
-# I think I'm handling the file wrong, causing it to swell to a massive size.
 def close(output_text):
+	"""Output processed text to file."""
 	with open("output.txt", "w") as f:
 		for triple in output_text:
 			f.write(f"{triple}\n")
 
 words = text_input()
-# moby_dick = text_open(file)
 words_list = text_transform(words)
 words_triples = text_triple_maker(words_list)
 words_triples_count = triple_count(words_triples)
 close(words_triples_count)
-
-#with open("output.txt", "w") as f:
-#	for triple in words_triples_count:
-#		f.write(f"{triple}\n")
-#close(moby_triples_count)
 
 # Alternatively, you could nest the fuction calls like the following:
 # words_triples_count = triple_count(text_triple_maker(text_transform(text_open(file))))
