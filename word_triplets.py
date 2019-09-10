@@ -14,6 +14,8 @@ import sys
 # Check for consistency of quote marks.
 # Create class "PhraseCount" or "TripCheck" or "TripletsCounter" to hold functions.
 
+# Can I take an argument to choose the size of text groupings at run time??? That would be a good addition!
+
 def text_open(file_name):
 	"""Read file contents."""
 	with open(file_name) as f:

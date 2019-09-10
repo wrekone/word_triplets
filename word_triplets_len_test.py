@@ -4,6 +4,8 @@ from collections import Counter
 import re
 # Import sys for access to system specific parameters and functions.
 import sys
+# Import argparse to parse command line options.
+import argparse
 
 # Don't forget to accept streams OR files. DONE!
 # Don't forget to write documentation for project, classes, and functions.
@@ -13,9 +15,15 @@ import sys
 # Am I picking up partial words, such as "sea" in the phrase "of the seamen"?
 # Check for consistency of quote marks.
 # Create class "PhraseCount" or "TripCheck" or "TripletsCounter" to hold functions.
-# Should I make this an executable.
+# Should I make this an executable?
+# Classes could be file handling & file manipulation. Maybe just using modules would be better. Simpler for sure.
 
 # Can I take an argument to choose the size of text groupings at run time??? That would be a good addition! Let's try it.
+# Using positional arguments is not working because the arg is in a different place depending on whether input is a stream of a file.
+# Going to look into using optional arguments instead.
+# Will want to create help text if using run time arguments. Looks like this is included in argparse.
+
+group_size = 3
 
 def text_open(file_name):
 	"""Read file contents."""
@@ -24,17 +32,25 @@ def text_open(file_name):
 	return text
 
 def text_input():
-	group_length = sys.argv[1]
 	"""Take input from file or stream."""
-	# sys.stdin.isatty() returns false if there's something in stdin
-	if not sys.stdin.isatty():
+	global group_size
+	parser = argparse.ArgumentParser()
+	parser.add_argument("-f", "--file", help="target filename")
+	parser.add_argument("-s", "--size", type=int, help="set number of words in group")
+	args = parser.parse_args()
+	if args.size:
+		group_size = args.size
+	# sys.stdin.isatty() returns false if there's something in stdin.
+	if not sys.stdin.isatty() and not args.file:
 		text = sys.stdin.read()
-	elif sys.argv[2]:
-		text = text_open(sys.argv[2])
-	# Should probably be error handling here.
+		return text
+	elif sys.stdin.isatty() and not args.file:
+		print("Missing options or stream.")
+		print("Try 'word_triplets_len_test.py --help' for more information.")
+		sys.exit()
 	else:
-		print("Error: Please submit text to process as file or stream.")
-	return text
+		text = text_open(args.file)
+		return text
 
 def text_transform(text):
 	"""Prepare text for processing. Return as list."""
@@ -45,10 +61,11 @@ def text_transform(text):
 	text_arr = text.split()
 	return text_arr
 
-def text_triple_maker(arr):
+# Should group_size have a default or just be assigned globally?
+def text_triple_maker(arr, group_size=3):
 	"""Create list of all triples from text."""
 	# Double check this reaches end of text.
-	x, y = 0, group_length
+	x, y = 0, group_size
 	triples_list = []
 	while y <= len(arr):
 		triple = (arr[x:y])
@@ -71,7 +88,7 @@ def close(output_text):
 
 words = text_input()
 words_list = text_transform(words)
-words_triples = text_triple_maker(words_list)
+words_triples = text_triple_maker(words_list, group_size)
 words_triples_count = triple_count(words_triples)
 close(words_triples_count)
 
