@@ -22,6 +22,7 @@ import argparse
 # Using positional arguments is not working because the arg is in a different place depending on whether input is a stream of a file.
 # Going to look into using optional arguments instead.
 # Will want to create help text if using run time arguments. Looks like this is included in argparse.
+# Should I keep it simple and not worry about command line args or make it more robust?
 
 group_size = 3
 
@@ -34,18 +35,22 @@ def text_open(file_name):
 def text_input():
 	"""Take input from file or stream."""
 	global group_size
-	parser = argparse.ArgumentParser()
-	parser.add_argument("-f", "--file", help="target filename")
-	parser.add_argument("-s", "--size", type=int, help="set number of words in group")
+	# sys.stdin.isatty() returns false if there's something in stdin. I could understand this better.
+	if not sys.stdin.isatty():
+		text = sys.stdin.read()
+		return text
+		# Read the argparse documentation!
+	parser = argparse.ArgumentParser(description="Count the number of word groups in a file.")
+	parser.add_argument("file", help="target filename")
+	# This seems overly verbose. Also, the default is set in multiple places in the file.
+	parser.add_argument("size", type=int, default=3,
+						help="the size of the group (default is 3)")
 	args = parser.parse_args()
 	if args.size:
 		group_size = args.size
-	# sys.stdin.isatty() returns false if there's something in stdin.
-	if not sys.stdin.isatty() and not args.file:
-		text = sys.stdin.read()
-		return text
+	# I think I can handle this more gracefully.
 	elif sys.stdin.isatty() and not args.file:
-		print("Missing options or stream.")
+		print("usage: word_triplets_len_test.py [-h] [--file FILE] [--size SIZE]")
 		print("Try 'word_triplets_len_test.py --help' for more information.")
 		sys.exit()
 	else:
