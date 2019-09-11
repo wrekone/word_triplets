@@ -19,14 +19,6 @@ import argparse
 
 # Can I take an argument to choose the size of text groupings at run time??? That would be a good addition!
 
-def help_text():
-	parser = argparse.ArgumentParser(description="Return the 100 most common 3-word groups.", usage="word_triplets.py FILE ...")
-	#parser.add_argument("--group", type=int, default=3,
-	#					help="the size of the group (default is 3)")
-	#parser.add_argument("--size", type=int, default=100,
-	#					help="the number of groups returned (default is 100)")
-	args = parser.parse_args()
-
 def text_open(file_name):
 	"""Read file contents."""
 	with open(file_name) as f:
@@ -58,7 +50,7 @@ def text_transform(text):
 	text = text.lower()
 	# Removed emdashes from regex. The results still aren't matching example. 
 	# I'm thinking there are mixed uses of dashes and emdashes.
-	text = re.sub(r"[\-\",.;:!?“”]+", " ", text)
+	text = re.sub(r"[\-\",.;:!–?—“”]+", " ", text)
 	# Replace curly single quotes with straight single quotes. Edge cases galore here so write good tests!
 	text = re.sub(r"[‘’]+", "'", text)
 	text_arr = text.split()
@@ -89,7 +81,6 @@ def close(output_text):
 		for triple in output_text:
 			f.write(f"{triple}\n")
 
-help_text()
 words = text_input()
 words_list = text_transform(words)
 words_triples = text_triple_maker(words_list)
