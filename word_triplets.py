@@ -20,9 +20,11 @@ import argparse
 # Can I take an argument to choose the size of text groupings at run time??? That would be a good addition!
 
 def help_text():
-	parser = argparse.ArgumentParser(description="List the top 100 word groups in a file.", usage="word_triplets.py FILE...")
-	# parser.add_argument("size", type=int, default=3,
-	# 					help="the size of the group (default is 3)")
+	parser = argparse.ArgumentParser(description="Return the 100 most common 3-word groups.", usage="word_triplets.py FILE ...")
+	#parser.add_argument("--group", type=int, default=3,
+	#					help="the size of the group (default is 3)")
+	#parser.add_argument("--size", type=int, default=100,
+	#					help="the number of groups returned (default is 100)")
 	args = parser.parse_args()
 
 def text_open(file_name):
