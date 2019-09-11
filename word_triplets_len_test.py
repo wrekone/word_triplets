@@ -24,7 +24,7 @@ import argparse
 # Will want to create help text if using run time arguments. Looks like this is included in argparse.
 # Should I keep it simple and not worry about command line args or make it more robust?
 
-group_size = 3
+# group_size = 3
 
 def text_open(file_name):
 	"""Read file contents."""
@@ -39,7 +39,7 @@ def text_input():
 	if not sys.stdin.isatty():
 		text = sys.stdin.read()
 		return text
-		# Read the argparse documentation!
+	# Read the argparse documentation!
 	parser = argparse.ArgumentParser(description="Count the number of word groups in a file.")
 	parser.add_argument("file", help="target filename")
 	# This seems overly verbose. Also, the default is set in multiple places in the file.
@@ -47,6 +47,7 @@ def text_input():
 						help="the size of the group (default is 3)")
 	args = parser.parse_args()
 	if args.size:
+		# How can I do this without using global variable?
 		group_size = args.size
 	# I think I can handle this more gracefully.
 	elif sys.stdin.isatty() and not args.file:
@@ -67,7 +68,7 @@ def text_transform(text):
 	return text_arr
 
 # Should group_size have a default or just be assigned globally?
-def text_triple_maker(arr, group_size=3):
+def text_triple_maker(arr, group_size):
 	"""Create list of all triples from text."""
 	# Double check this reaches end of text.
 	x, y = 0, group_size

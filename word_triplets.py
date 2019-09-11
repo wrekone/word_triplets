@@ -13,6 +13,7 @@ import sys
 # Am I picking up partial words, such as "sea" in the phrase "of the seamen"?
 # Check for consistency of quote marks.
 # Create class "PhraseCount" or "TripCheck" or "TripletsCounter" to hold functions.
+# What if there are less than three words in source material?
 
 # Can I take an argument to choose the size of text groupings at run time??? That would be a good addition!
 
@@ -37,10 +38,13 @@ def text_input():
 def text_transform(text):
 	"""Prepare text for processing. Return as list."""
 	text = text.lower()
-	text = re.sub(r"[\-\",.;:!?—“”]+", " ", text)
+	# Removed emdashes from regex. The results still aren't matching example. 
+	# I'm thinking there are mixed uses of dashes and emdashes.
+	text = re.sub(r"[\-\",.;:!?“”]+", " ", text)
 	# Replace stupid fancy single quotes. Edge cases galore here so write good tests!
 	text = re.sub(r"[‘’]+", "'", text)
 	text_arr = text.split()
+	# Check for length of array.
 	return text_arr
 
 def text_triple_maker(arr):
@@ -58,7 +62,7 @@ def text_triple_maker(arr):
 
 def triple_count(arr):
 	"""Count triples and sort by most common."""
-	triple_count = Counter(arr).most_common()
+	triple_count = Counter(arr).most_common(100)
 	return triple_count
 
 def close(output_text):
