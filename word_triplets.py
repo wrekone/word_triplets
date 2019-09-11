@@ -4,6 +4,8 @@ from collections import Counter
 import re
 # Import sys for access to system specific parameters and functions.
 import sys
+# Parse command line arguments.
+import argparse
 
 # Don't forget to accept streams OR files. DONE!
 # Don't forget to write documentation for project, classes, and functions.
@@ -16,6 +18,12 @@ import sys
 # What if there are less than three words in source material?
 
 # Can I take an argument to choose the size of text groupings at run time??? That would be a good addition!
+
+def help_text():
+	parser = argparse.ArgumentParser(description="List the top 100 word groups in a file.", usage="word_triplets.py FILE...")
+	# parser.add_argument("size", type=int, default=3,
+	# 					help="the size of the group (default is 3)")
+	args = parser.parse_args()
 
 def text_open(file_name):
 	"""Read file contents."""
@@ -38,6 +46,9 @@ def text_input():
 	except IndexError:
 		print("Error: No input. Please provide something to process.")
 		sys.exit()
+	except FileNotFoundError:
+		print(f"{sys.argv[1]}: No such file")
+		print("usage: word_triplets_len_test.py [FILE]...")
 	return text
 
 def text_transform(text):
@@ -76,6 +87,7 @@ def close(output_text):
 		for triple in output_text:
 			f.write(f"{triple}\n")
 
+help_text()
 words = text_input()
 words_list = text_transform(words)
 words_triples = text_triple_maker(words_list)
