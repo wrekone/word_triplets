@@ -29,9 +29,12 @@ def text_input():
 	try:
 		if not sys.stdin.isatty():
 			text = sys.stdin.read()
-		# Need to be able to take in multiple files here.
 		elif sys.argv[1]:
-			text = text_open(sys.argv[1])
+			text = ""
+			inputArgs = sys.argv
+			for argument in inputArgs:
+				text += text_open(argument)
+				text += " "
 	except IndexError:
 		print("Error: No input. Please provide something to process.")
 		sys.exit()
