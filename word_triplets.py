@@ -26,13 +26,15 @@ def text_open(file_name):
 def text_input():
 	"""Take input from file(s) or stream."""
 	# sys.stdin.isatty() returns false if there's something in stdin
-	if not sys.stdin.isatty():
-		text = sys.stdin.read()
-	elif sys.argv[1]:
-		text = text_open(sys.argv[1])
-	# Should probably be error handling here.
-	else:
-		print("Error: Please submit text to process as file or stream.")
+	try:
+		if not sys.stdin.isatty():
+			text = sys.stdin.read()
+		# Need to be able to take in multiple files here.
+		elif sys.argv[1]:
+			text = text_open(sys.argv[1])
+	except IndexError:
+		print("Error: No input. Please provide something to process.")
+		sys.exit()
 	return text
 
 def text_transform(text):
@@ -41,7 +43,7 @@ def text_transform(text):
 	# Removed emdashes from regex. The results still aren't matching example. 
 	# I'm thinking there are mixed uses of dashes and emdashes.
 	text = re.sub(r"[\-\",.;:!?“”]+", " ", text)
-	# Replace stupid fancy single quotes. Edge cases galore here so write good tests!
+	# Replace curly single quotes with straight single quotes. Edge cases galore here so write good tests!
 	text = re.sub(r"[‘’]+", "'", text)
 	text_arr = text.split()
 	# Check for length of array.
