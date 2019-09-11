@@ -41,10 +41,11 @@ def text_input():
 		return text
 	# Read the argparse documentation!
 	parser = argparse.ArgumentParser(description="Count the number of word groups in a file.")
-	parser.add_argument("file", help="target filename")
 	# This seems overly verbose. Also, the default is set in multiple places in the file.
-	parser.add_argument("size", type=int, default=3,
+	parser.add_argument("file"* help="input file(s)")
+	parser.add_argument("--size", type=int, default=3,
 						help="the size of the group (default is 3)")
+	parser.add_argument("--write", help="write output to FILE")
 	args = parser.parse_args()
 	if args.size:
 		# How can I do this without using global variable?

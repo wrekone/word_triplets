@@ -48,9 +48,12 @@ def text_input():
 def text_transform(text):
 	"""Prepare text for processing. Return as list."""
 	text = text.lower()
-	# Removed emdashes from regex. The results still aren't matching example. 
-	# I'm thinking there are mixed uses of dashes and emdashes.
-	text = re.sub(r"[\-\",.;:!–?—“”]+", " ", text)
+	# How should I handle hyphens, en dashes, and em dashes?
+	# I'm thinking there are mixed uses of hyphens, en dashes, and em dashes in sample text "Moby Dick".
+	# Proper English grammar uses hyphens to join two or more words together into compound words.
+	# En dash: Twice as long as a hyphen, the en dash is a symbol (--) that is used in writing or printing to indicate a range, connections or differentiations, such as 1880-1945 or Princeton-New York trains.
+	# Em dash: Longer than the en dash, the em dash can be used in place of a comma, parenthesis, or colon to enhance readability or emphasize the conclusion of a sentence. For example, She gave him her answer --- No!
+	text = re.sub(r"[`\-\",.;:!–?—“”]+", " ", text)
 	# Replace curly single quotes with straight single quotes. Edge cases galore here so write good tests!
 	text = re.sub(r"[‘’]+", "'", text)
 	text_arr = text.split()
@@ -75,19 +78,24 @@ def triple_count(arr):
 	triple_count = Counter(arr).most_common(100)
 	return triple_count
 
+# Determine whether better to output to file or to terminal.
+
 def close(output_text):
 	"""Output processed text to file."""
 	with open("output.txt", "w") as f:
 		for triple in output_text:
 			f.write(f"{triple}\n")
 
+def pipe_out(output_text):
+	"""Print processed text to terminal."""
+	print("The most common groupings are:")
+	for triple in output_text:
+		print(f"{triple}")
+
 words = text_input()
 words_list = text_transform(words)
 words_triples = text_triple_maker(words_list)
 words_triples_count = triple_count(words_triples)
-close(words_triples_count)
-
-# Alternatively, you could nest the fuction calls like the following:
-# words_triples_count = triple_count(text_triple_maker(text_transform(text_open(file))))
-# print(words_triples_count)
+pipe_out(words_triples_count)
+#close(words_triples_count)
 
