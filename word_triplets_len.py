@@ -52,8 +52,8 @@ def text_input():
 		group_size = args.size
 	# I think I can handle this more gracefully.
 	elif sys.stdin.isatty() and not args.file:
-		print("usage: word_triplets_len_test.py [-h] [--file FILE] [--size SIZE]")
-		print("Try 'word_triplets_len_test.py --help' for more information.")
+		print("usage: word_triplets_len.py [-h] [--file FILE] [--size SIZE]")
+		print("Try 'word_triplets_len.py --help' for more information.")
 		sys.exit()
 	else:
 		text = text_open(args.file)
@@ -62,7 +62,7 @@ def text_input():
 def text_transform(text):
 	"""Prepare text for processing. Return as list."""
 	text = text.lower()
-	text = re.sub(r"[\-\",.;:!?—“”]+", " ", text)
+	text = re.sub(r"[\-\",.;:!?–“—”]+", " ", text)
 	# Replace stupid fancy single quotes. Edge cases galore here so write good tests!
 	text = re.sub(r"[‘’]+", "'", text)
 	text_arr = text.split()
@@ -87,19 +87,15 @@ def triple_count(arr):
 	triple_count = Counter(arr).most_common()
 	return triple_count
 
-def close(output_text):
+def close(output):
 	"""Output processed text to file."""
 	with open("output.txt", "w") as f:
-		for triple in output_text:
+		for triple in output:
 			f.write(f"{triple}\n")
 
 words = text_input()
-words_list = text_transform(words)
-words_triples = text_triple_maker(words_list, group_size)
-words_triples_count = triple_count(words_triples)
-close(words_triples_count)
-
-# Alternatively, you could nest the fuction calls like the following:
-# words_triples_count = triple_count(text_triple_maker(text_transform(text_open(file))))
-# print(words_triples_count)
+word_list = text_transform(words)
+word_triples = text_triple_maker(word_list, group_size)
+triples_counted = triple_count(word_triples)
+close(triples_counted)
 

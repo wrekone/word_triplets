@@ -4,8 +4,6 @@ from collections import Counter
 import re
 # Import sys for access to system specific parameters and functions.
 import sys
-# Parse command line arguments.
-import argparse
 
 # Don't forget to accept streams OR files. DONE!
 # Don't forget to write documentation for project, classes, and functions.
@@ -61,7 +59,7 @@ def text_transform(text):
 	return text_arr
 
 def text_triple_maker(arr):
-	"""Create list of all triples from text."""
+	"""Create list of all triples from text."""	
 	# Double check this reaches end of text.
 	x, y = 0, 3
 	triples_list = []
@@ -76,11 +74,12 @@ def text_triple_maker(arr):
 def triple_count(arr):
 	"""Count triples and sort by most common."""
 	triple_count = Counter(arr).most_common(100)
+	# Could end program here if I don't want to make output pretty or output to file by default.
 	return triple_count
 
 # Determine whether better to output to file or to terminal.
 
-def close(output_text):
+def save_output(output_text):
 	"""Output processed text to file."""
 	with open("output.txt", "w") as f:
 		for triple in output_text:
@@ -96,6 +95,6 @@ words = text_input()
 words_list = text_transform(words)
 words_triples = text_triple_maker(words_list)
 words_triples_count = triple_count(words_triples)
-pipe_out(words_triples_count)
-#close(words_triples_count)
+#pipe_out(words_triples_count)
+save_output(words_triples_count)
 
