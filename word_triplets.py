@@ -24,7 +24,7 @@ def text_open(file_name):
 	return text
 
 def text_input():
-	"""Take input from file or stream."""
+	"""Take input from file(s) or stream."""
 	# sys.stdin.isatty() returns false if there's something in stdin
 	if not sys.stdin.isatty():
 		text = sys.stdin.read()
