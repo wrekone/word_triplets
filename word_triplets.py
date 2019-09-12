@@ -34,10 +34,10 @@ def text_input():
 	except IndexError:
 		print("Error: Please provide something to process.")
 		print("Usage: runner.py [FILE]...")
-		sys.exit()
+		quit()
 	except FileNotFoundError:
 		print(f"No such file: {sys.argv[1]}")
-		sys.exit()  # Can I exit the program without using a syscall?
+		quit()
 	print("Processing text...")
 	return text
 
@@ -55,7 +55,7 @@ def text_transform(text):
 	text_arr = text.split()
 	if len(text_arr) < 3:  # Check for minimum of 3 words.
 		print("Please provide a minimum of three words.")
-		sys.exit()
+		quit()
 	else:
 		return text_arr
 
