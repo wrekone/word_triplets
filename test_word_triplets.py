@@ -1,6 +1,7 @@
 import unittest
 import word_triplets
 
+
 class TestWordTripletFunctions(unittest.TestCase):
 	"""Test functions for word_triplets.py"""
 
@@ -12,9 +13,9 @@ class TestWordTripletFunctions(unittest.TestCase):
 	def test_can_handle_multiple_file_input(self):
 		pass
 
-	#def test_handles_lack_of_input_gracefully(self):
-	#	inputty = word_triplets.text_input()
-	#	self.assertEqual(inputty, "Error: No input. Please provide something to process.")
+	# def test_handles_lack_of_input_gracefully(self):
+	# 	inputty = word_triplets.text_input()
+	# 	self.assertEqual(inputty, "Error: No input. Please provide something to process.")
 
 	def test_text_transform(self):
 		"""Does program ignores punctuation, line endings, and case?"""
@@ -22,14 +23,15 @@ class TestWordTripletFunctions(unittest.TestCase):
 		processed_sample = word_triplets.text_transform(sample)
 		self.assertEqual(processed_sample, ['abc', 'def', 'ghi', 'jkl', 'xyz'])
 
-	#def test_punctuation_is_removed(self):
-	#	pass
+	# def test_punctuation_is_removed(self):
+	# 	pass
 
-	#def test_text_triple_maker_returns_triples(self):
-	#	pass
+	# def test_text_triple_maker_returns_triples(self):
+	# 	pass
 
-	#def test_triple_counter_does_something(self):
-	#	pass
+	# def test_triple_counter_does_something(self):
+	# 	pass
 
 if __name__ == "__main__":
 	unittest.main()
+	

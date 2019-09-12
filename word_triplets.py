@@ -12,11 +12,13 @@ import sys
 # Don't forget to update or delete comments.
 # What if there are less than three words in source material?
 
+
 def text_open(file_name):
 	"""Read file contents."""
 	with open(file_name) as f:
 		text = f.read()
 	return text
+
 
 def text_input():
 	"""Take input from file(s) or stream."""
@@ -33,11 +35,12 @@ def text_input():
 		print("Error: Please provide something to process.")
 		print("Usage: runner.py [FILE]...")
 		sys.exit()
-	except FileNotFoundError: # This is not working. Program is printing out module contents, yikes!
+	except FileNotFoundError:
 		print(f"No such file: {sys.argv[1]}")
-		sys.exit()
+		sys.exit()  # Can I exit the program without using a syscall?
 	print("Processing text...")
 	return text
+
 
 def text_transform(text):
 	"""Prepare text for processing. Return as list."""
@@ -48,16 +51,17 @@ def text_transform(text):
 	# En dash: Twice as long as a hyphen, the en dash is a symbol (--) that is used in writing or printing to indicate a range, connections or differentiations, such as 1880-1945 or Princeton-New York trains.
 	# Em dash: Longer than the en dash, the em dash can be used in place of a comma, parenthesis, or colon to enhance readability or emphasize the conclusion of a sentence. For example, She gave him her answer --- No!
 	text = re.sub(r"[`\-\",.;:!–?—“”]+", " ", text)
-	text = re.sub(r"[‘’]+", "'", text) # Replace curly single quotes with straight single quotes.
+	text = re.sub(r"[‘’]+", "'", text)  # Replace curly single quotes with straight single quotes.
 	text_arr = text.split()
-	if len(text_arr) < 3: # Check for minimum of 3 words.
+	if len(text_arr) < 3:  # Check for minimum of 3 words.
 		print("Please provide a minimum of three words.")
 		sys.exit()
 	else:
 		return text_arr
 
+
 def text_triple_maker(arr):
-	"""Create list of all triples from text."""	
+	"""Create list of all triples from text."""
 	x, y = 0, 3
 	triples_list = []
 	while y <= len(arr):
@@ -68,6 +72,7 @@ def text_triple_maker(arr):
 		y += 1
 	return triples_list
 
+
 def triple_count(arr):
 	"""Count triples and sort by most common."""
 	triple_count = Counter(arr).most_common(100)
@@ -76,11 +81,13 @@ def triple_count(arr):
 
 # Determine whether better to output to file or to terminal.
 
+
 def save_output(output_text):
 	"""Output processed text to file."""
 	with open("output.txt", "w") as f:
 		for triple in output_text:
 			f.write(f"{triple}\n")
+
 
 def pipe_out(output_text):
 	"""Print processed text to terminal."""
@@ -88,10 +95,10 @@ def pipe_out(output_text):
 	for triple in output_text:
 		print(f"{triple}")
 
-#words = text_input()
-#words_list = text_transform(words)
-#words_triples = text_triple_maker(words_list)
-#words_triples_count = triple_count(words_triples)
-#pipe_out(words_triples_count)
-#save_output(words_triples_count)
+# words = text_input()
+# words_list = text_transform(words)
+# words_triples = text_triple_maker(words_list)
+# words_triples_count = triple_count(words_triples)
+# pipe_out(words_triples_count)
+# save_output(words_triples_count)
 
