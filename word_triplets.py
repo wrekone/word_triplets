@@ -96,7 +96,6 @@ def save_output(output_text):
 
 def pipe_out(output_text):
 	"""Print processed text to terminal."""
-	print("The most common groupings are:")
 	for triple in output_text:
 		print(f"{triple}")
 
