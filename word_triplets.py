@@ -5,6 +5,7 @@ import re
 # Import sys for access to system specific parameters and functions.
 import sys
 
+# Better to remove apostrophes or leave them in? Shouldnt or Shouldn't ?
 # Is raw output preferred? Or output to a file, or prettified output, or ...?
 # Don't forget to write documentation for project, classes, and functions.
 # Don't forget to create test cases.
@@ -46,8 +47,7 @@ def text_transform(text):
 	# En dash: Twice as long as a hyphen, the en dash is a symbol (--) that is used in writing or printing to indicate a range, connections or differentiations, such as 1880-1945 or Princeton-New York trains.
 	# Em dash: Longer than the en dash, the em dash can be used in place of a comma, parenthesis, or colon to enhance readability or emphasize the conclusion of a sentence. For example, She gave him her answer --- No!
 	text = re.sub(r"[`\-\",.;:!–?—“”]+", " ", text)
-	# Replace curly single quotes with straight single quotes. Edge cases galore here so write good tests!
-	text = re.sub(r"[‘’]+", "'", text)
+	text = re.sub(r"[‘’]+", "'", text) # Replace curly single quotes with straight single quotes.
 	text_arr = text.split()
 	if len(text_arr) < 3: # Check for minimum of 3 words.
 		print("Please provide a minimum of three words.")
