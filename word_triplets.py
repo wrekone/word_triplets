@@ -40,7 +40,6 @@ def text_input():
 		inputArgs = sys.argv[1:]
 		text = text_open(inputArgs)
 		return text
-	print("Processing text...")
 
 
 def text_transform(text):
