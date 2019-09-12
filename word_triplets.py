@@ -33,13 +33,18 @@ def text_open(file_names):
 
 def text_input():
 	"""Take input from file(s) or stream."""
-	if not sys.stdin.isatty():
-		text = sys.stdin.read()
+	try:
+		if not sys.stdin.isatty():
+			text = sys.stdin.read()
+			return text
+		elif sys.argv[1]:
+			inputArgs = sys.argv[1:]
+			text = text_open(inputArgs)
 		return text
-	elif sys.argv[1]:
-		inputArgs = sys.argv[1:]
-		text = text_open(inputArgs)
-		return text
+	except IndexError:
+		print("Error: Please provide something to process.")
+		print("Usage: runner.py [FILE]...")
+		quit()
 
 
 def text_transform(text):
