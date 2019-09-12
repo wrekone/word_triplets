@@ -10,9 +10,19 @@ class TestWordTripletFunctions(unittest.TestCase):
         pass
 
     def test_can_handle_multiple_file_input(self):
+        """Can multiple files be passed into the program at one time?"""
         pass
 
     def test_handles_lack_of_input_gracefully(self):
+        """Does the program crash of not passed any input?"""
+        pass
+
+    def can_take_stream_as_input(self):
+        """Are streams accepted as input?"""
+        pass
+
+    def test_all_groups_are_of_three(self):
+        """Is text split into triplets?"""
         pass
 
     def test_text_transform(self):
@@ -22,9 +32,7 @@ class TestWordTripletFunctions(unittest.TestCase):
         self.assertEqual(processed_sample, ['abc', 'def', 'ghi', 'jkl', 'xyz'])
 
     def test_punctuation_is_removed(self):
-        pass
-
-    def test_text_triple_maker_returns_triples(self):
+        """Is all unwanted punctuation removed?"""
         pass
 
     def test_triple_counter_does_something(self):
