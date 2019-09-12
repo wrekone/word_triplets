@@ -20,7 +20,6 @@ def text_open(file_name):
 
 def text_input():
 	"""Take input from file(s) or stream."""
-	print("Processing text...")
 	try:
 		if not sys.stdin.isatty():
 			text = sys.stdin.read()
@@ -31,11 +30,13 @@ def text_input():
 				text += text_open(argument)
 				text += " "
 	except IndexError:
-		print("Error: No input. Please provide something to process.")
+		print("Error: Please provide something to process.")
+		print("Usage: runner.py [FILE]...")
 		sys.exit()
-	except FileNotFoundError:
-		print(f"{sys.argv[1]}: No such file")
-		print("usage: word_triplets_len_test.py [FILE]...")
+	except FileNotFoundError: # This is not working. Program is printing out module contents, yikes!
+		print(f"No such file: {sys.argv[1]}")
+		sys.exit()
+	print("Processing text...")
 	return text
 
 def text_transform(text):
