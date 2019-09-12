@@ -13,33 +13,34 @@ import sys
 # What if there are less than three words in source material?
 
 
-def text_open(file_name):
+def text_open(file_names):
 	"""Read file contents."""
-	with open(file_name) as f:
-		text = f.read()
+	try:
+		text = ""
+		for file in file_names:
+			with open(file) as f:
+				text += f.read()
+				text += " "
+	except FileNotFoundError:
+		print(f"Error: file not found")
+		quit()
+	except IndexError:
+		print("Error: Please provide something to process.")
+		print("Usage: runner.py [FILE]...")
+		quit()
 	return text
 
 
 def text_input():
 	"""Take input from file(s) or stream."""
-	try:
-		if not sys.stdin.isatty():
-			text = sys.stdin.read()
-		elif sys.argv[1]:
-			text = ""
-			inputArgs = sys.argv
-			for argument in inputArgs:
-				text += text_open(argument)
-				text += " "
-	except IndexError:
-		print("Error: Please provide something to process.")
-		print("Usage: runner.py [FILE]...")
-		quit()
-	except FileNotFoundError:
-		print(f"No such file: {sys.argv[1]}")
-		quit()
+	if not sys.stdin.isatty():
+		text = sys.stdin.read()
+		return text
+	elif sys.argv[1]:
+		inputArgs = sys.argv[1:]
+		text = text_open(inputArgs)
+		return text
 	print("Processing text...")
-	return text
 
 
 def text_transform(text):
@@ -50,8 +51,8 @@ def text_transform(text):
 	# Proper English grammar uses hyphens to join two or more words together into compound words.
 	# En dash: Twice as long as a hyphen, the en dash is a symbol (--) that is used in writing or printing to indicate a range, connections or differentiations, such as 1880-1945 or Princeton-New York trains.
 	# Em dash: Longer than the en dash, the em dash can be used in place of a comma, parenthesis, or colon to enhance readability or emphasize the conclusion of a sentence. For example, She gave him her answer --- No!
-	text = re.sub(r"[`\-\",.;:!–?—“”]+", " ", text)
-	text = re.sub(r"[‘’]+", "'", text)  # Replace curly single quotes with straight single quotes.
+	text = re.sub(r"[`\-\",.;:!–?—“”]+", " ", text)  # Remove punctuation.
+	text = re.sub(r"[‘’]+", "'", text)  # Replace curly single quotes w/ straight.
 	text_arr = text.split()
 	if len(text_arr) < 3:  # Check for minimum of 3 words.
 		print("Please provide a minimum of three words.")
@@ -101,4 +102,3 @@ def pipe_out(output_text):
 # words_triples_count = triple_count(words_triples)
 # pipe_out(words_triples_count)
 # save_output(words_triples_count)
-
