@@ -49,8 +49,7 @@ def text_transform(text):
 	# Replace curly single quotes with straight single quotes. Edge cases galore here so write good tests!
 	text = re.sub(r"[‘’]+", "'", text)
 	text_arr = text.split()
-	# Check for length of array.
-	if not text_arr[9]:
+	if len(text_arr) < 3: # Check for minimum of 3 words.
 		print("Please provide a minimum of three words.")
 		sys.exit()
 	else:
