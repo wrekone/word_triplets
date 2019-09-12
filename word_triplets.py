@@ -81,6 +81,7 @@ def text_triple_maker(arr):
 def triple_count(arr):
     """Count triples and sort by most common."""
     triple_count = Counter(arr).most_common(100)
+    print(triple_count)
     # Could end program here if I don't want to make output pretty or output to file by default.
     return triple_count
 
