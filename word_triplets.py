@@ -5,17 +5,11 @@ import re
 # Import sys for access to system specific parameters and functions.
 import sys
 
-# Don't forget to accept streams OR files. DONE!
+# Is raw output preferred? Or output to a file, or prettified output, or ...?
 # Don't forget to write documentation for project, classes, and functions.
 # Don't forget to create test cases.
 # Don't forget to update or delete comments.
-# Strings to test against: "one of the" (text contains: "bone of the", "one of them", "none of them", etc.)
-# Am I picking up partial words, such as "sea" in the phrase "of the seamen"?
-# Check for consistency of quote marks.
-# Create class "PhraseCount" or "TripCheck" or "TripletsCounter" to hold functions.
 # What if there are less than three words in source material?
-
-# Can I take an argument to choose the size of text groupings at run time??? That would be a good addition!
 
 def text_open(file_name):
 	"""Read file contents."""
@@ -25,7 +19,7 @@ def text_open(file_name):
 
 def text_input():
 	"""Take input from file(s) or stream."""
-	# sys.stdin.isatty() returns false if there's something in stdin
+	print("Processing text...")
 	try:
 		if not sys.stdin.isatty():
 			text = sys.stdin.read()
@@ -56,11 +50,14 @@ def text_transform(text):
 	text = re.sub(r"[‘’]+", "'", text)
 	text_arr = text.split()
 	# Check for length of array.
-	return text_arr
+	if not text_arr[9]:
+		print("Please provide a minimum of three words.")
+		sys.exit()
+	else:
+		return text_arr
 
 def text_triple_maker(arr):
 	"""Create list of all triples from text."""	
-	# Double check this reaches end of text.
 	x, y = 0, 3
 	triples_list = []
 	while y <= len(arr):
