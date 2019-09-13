@@ -14,6 +14,7 @@ Example:
 Alternatively, you can pipe text into the program with `cat`, `echo`, etc.
 
 Tests usage: `python3 test_word_triplets.py`
+
 Several example texts are provided. Examples are provided free of copyright.
 
 TODO: allow group size to be set at runtime, allow number of results returned to be set at runtime, allow raw-output option to be set at runtime, improve tests
