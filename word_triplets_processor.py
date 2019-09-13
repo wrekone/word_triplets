@@ -23,7 +23,7 @@ def text_open(file_names):
                 text += " "
         except FileNotFoundError:
             print(f"Error: file not found")
-            quit()
+            sys.exit()
     return text
 
 
@@ -40,7 +40,7 @@ def text_input():
     except IndexError:
         print("Error: Please provide something to process.")
         print("Usage: runner.py [FILE]...")
-        quit()
+        sys.exit()
 
 
 def text_transform(text):
@@ -55,7 +55,7 @@ def text_transform(text):
     text_arr = text.split()
     if len(text_arr) < 3:  # Check for minimum of 3 words.
         print("Please provide a minimum of three words.")
-        quit()
+        sys.exit()
     else:
         return text_arr
 
