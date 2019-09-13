@@ -15,19 +15,16 @@ import sys
 
 def text_open(file_names):
     """Read file contents."""
-    try:
-        text = ""
-        for file in file_names:
+    text = ""
+    for file in file_names:
+        try:
             with open(file) as f:
                 text += f.read()
+                print(text)
                 text += " "
-    except FileNotFoundError:
-        print(f"Error: file not found")
-        quit()
-    except IndexError:
-        print("Error: Please provide something to process.")
-        print("Usage: runner.py [FILE]...")
-        quit()
+        except FileNotFoundError:
+            print(f"Error: file not found")
+            quit()
     return text
 
 
@@ -40,8 +37,8 @@ def text_input():
         elif sys.argv[1]:
             inputArgs = sys.argv[1:]
             text = text_open(inputArgs)
-        return text
-    except IndexError:
+            return text
+    except IndexError:  # Extraneous?
         print("Error: Please provide something to process.")
         print("Usage: runner.py [FILE]...")
         quit()
@@ -81,7 +78,7 @@ def text_triple_maker(arr):
 def triple_count(arr):
     """Count triples and sort by most common."""
     triple_count = Counter(arr).most_common(100)
-    print(triple_count)
+    # print(triple_count)
     # Could end program here if I don't want to make output pretty or output to file by default.
     return triple_count
 

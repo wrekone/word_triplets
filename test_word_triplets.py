@@ -7,15 +7,24 @@ class TestWordTripletFunctions(unittest.TestCase):
 
     def test_can_open_text_file(self):
         """Can a text file be read?"""
-        pass
+        sample = word_triplets.text_open(["sample_text.txt"])
+        self.assertEqual(sample, "This is a test. ")
 
     def test_can_handle_multiple_file_input(self):
         """Can multiple files be passed into the program at one time?"""
-        pass
+        sample = word_triplets.text_open(["sample_text.txt", "sample_text_too.txt"])
+        print(sample)
+        self.assertEqual(sample, "This is a test. This is a test too. ")
 
-    def test_handles_lack_of_input_gracefully(self):
-        """Does the program crash of not passed any input?"""
-        pass
+    def test_handle_lack_of_input_file(self):
+        """Can the program handle not being passed any input?"""
+        sample = word_triplets.text_open("")
+        self.assertEqual(sample, None)
+
+    def test_handle_bad_input(self):
+        """Can the program handle bad input?"""
+        with self.assertRaises(SystemExit):
+            word_triplets.text_open("non_existent.txt")
 
     def can_take_stream_as_input(self):
         """Are streams accepted as input?"""
