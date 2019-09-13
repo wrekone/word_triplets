@@ -26,11 +26,12 @@ class TestWordTripletFunctions(unittest.TestCase):
     def test_handle_bad_input(self):  # I would prefer to validate the FileNotFoundError.
         """Can the program handle bad input?"""
         with self.assertRaises(SystemExit):
-            word_triplets_processor.text_open("non_existent.txt")
+            word_triplets_processor.text_open(["non_existent.txt"])
 
     def test_handle_undersized_input(self):  # I would prefer to validate the message return.
         with self.assertRaises(SystemExit):
-            word_triplets_processor.text_open("two_word_text.txt")
+            two_words = word_triplets_processor.text_open(["two_word_text.txt"])
+            word_triplets_processor.text_transform(two_words)
 
     def test_stream_input(self):  # Not sure how to test this.
         """Can the program take an input stream?"""
