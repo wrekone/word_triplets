@@ -40,7 +40,7 @@ class TestWordTripletFunctions(unittest.TestCase):
 
     def test_text_transform(self):
         """Are punctuation, line endings, and case converted?"""
-        transform_sample = "ABC`DEF-\"GHI,.;JKL:!–?—“”...XYZ\n"
+        transform_sample = "ABC`DEF\"GHI,.;JKL:!–?—“”...XYZ\n"
         processed_sample = word_triplets_processor.text_transform(transform_sample)
         self.assertEqual(processed_sample, ["abc", "def", "ghi", "jkl", "xyz"])
 
