@@ -5,13 +5,6 @@ import re
 # Import sys for access to system specific parameters and functions.
 import sys
 
-# Better to remove apostrophes or leave them in? Shouldnt or Shouldn't ?
-# Is raw output preferred? Or output to a file, or prettified output, or ...?
-# Don't forget to write documentation for project, classes, and functions.
-# Don't forget to create test cases.
-# Don't forget to update or delete comments.
-# What if there are less than three words in source material?
-
 
 def text_open(file_names):
     """Read file contents."""
@@ -46,11 +39,6 @@ def text_input():
 def text_transform(text):
     """Prepare text for processing. Return as list."""
     text = text.lower()
-    # How should I handle hyphens, en dashes, and em dashes?
-    # I'm thinking there are mixed uses of hyphens, en dashes, and em dashes in sample text "Moby Dick".
-    # Proper English grammar uses hyphens to join two or more words together into compound words.
-    # En dash: Twice as long as a hyphen, the en dash is a symbol (--) that is used in writing or printing to indicate a range, connections or differentiations, such as 1880-1945 or Princeton-New York trains.
-    # Em dash: Longer than the en dash, the em dash can be used in place of a comma, parenthesis, or colon to enhance readability or emphasize the conclusion of a sentence. For example, She gave him her answer --- No!
     text = re.sub(r"[^a-z\-'‘’]+", " ", text)  # Remove punctuation.
     text_arr = text.split()
     if len(text_arr) < 3:  # Check for minimum of 3 words.
