@@ -1,7 +1,7 @@
 # word_triplets
 Count occurrences of three word patterns.
 
-Usage: `python3 word_triplets.py TEXTFILE`
+Usage: `python3 word_triplets.py TEXTFILE`  Example: `python3 word_triplets.py moby_dick.txt`
 
 Alternatively, you can pipe text into the program with `cat`, `echo`, and others.
 
