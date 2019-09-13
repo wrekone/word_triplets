@@ -37,7 +37,7 @@ def text_input():
             inputArgs = sys.argv[1:]
             text = text_open(inputArgs)
             return text
-    except IndexError:  # Extraneous?
+    except IndexError:
         print("Error: Please provide something to process.")
         print("Usage: runner.py [FILE]...")
         quit()
@@ -51,7 +51,7 @@ def text_transform(text):
     # Proper English grammar uses hyphens to join two or more words together into compound words.
     # En dash: Twice as long as a hyphen, the en dash is a symbol (--) that is used in writing or printing to indicate a range, connections or differentiations, such as 1880-1945 or Princeton-New York trains.
     # Em dash: Longer than the en dash, the em dash can be used in place of a comma, parenthesis, or colon to enhance readability or emphasize the conclusion of a sentence. For example, She gave him her answer --- No!
-    text = re.sub(r"[^a-zA-Z\-'‘’]+", " ", text)  # Remove punctuation.
+    text = re.sub(r"[^a-z\-'‘’]+", " ", text)  # Remove punctuation.
     text_arr = text.split()
     if len(text_arr) < 3:  # Check for minimum of 3 words.
         print("Please provide a minimum of three words.")
