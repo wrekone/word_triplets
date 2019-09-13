@@ -5,7 +5,11 @@ This program assumes proper use of en dashes, em dashes, and hyphens. Hyphens wi
 All single quotes (curly and straight) will be treated as straight quotes. 
 All other punctuation will be ignored.
 
-Usage: `python3 word_triplets.py TEXTFILE`  Example: `python3 word_triplets.py moby_dick.txt`
+Usage: 
+`python3 word_triplets.py TEXTFILE`  
+
+Example: 
+`python3 word_triplets.py moby_dick.txt`
 
 Alternatively, you can pipe text into the program with `cat`, `echo`, etc.
 
