@@ -12,10 +12,9 @@ def text_open(file_names):
     for file in file_names:
         try:
             with open(file) as f:
-                text += f.read()
-                text += " "
+                text += (f"{f.read()} ")
         except FileNotFoundError:
-            print(f"Error: file not found")
+            print("Error: file not found")
             sys.exit()
     return text
 
