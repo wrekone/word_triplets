@@ -3,7 +3,7 @@ Counts occurrences of the 100 most common three word groupings in a source text.
 
 This program assumes proper use of en dashes, em dashes, and hyphens. Hyphens will be retained. Hyphenated words will be treated as single words. En dashes and em dashes will be ignored. 
 All single quotes (curly and straight) will be treated as straight quotes. 
-All other punctuation will be ignored.
+All other punctuation will be ignored. Numerics will be ignored.
 
 Usage: 
 `python3 word_triplets.py TEXTFILE`  
