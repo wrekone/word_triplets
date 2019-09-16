@@ -13,6 +13,9 @@ Example:
 
 Alternatively, you can pipe text into the program with `cat`, `echo`, etc.
 
+Example:
+`echo "This is a test" | python3 word_triplets.py`
+
 Tests usage: `python3 test_word_triplets.py`
 
 Several example input texts are provided. Examples are provided free of copyright.
