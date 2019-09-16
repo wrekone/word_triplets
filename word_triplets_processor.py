@@ -60,10 +60,11 @@ def text_triple_maker(arr):
     return triples_list
 
 
-def triple_count(arr):
+def group_count(arr):
     """Count triples and sort by most common."""
-    triple_count = Counter(arr).most_common(100)
-    print(triple_count)
+    count = Counter(arr).most_common(100)
+    print(count)
+    return count  # For tests and future development
 
 
 # Print nicely formatted output for human consumption.

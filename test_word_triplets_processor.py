@@ -29,6 +29,7 @@ class TestWordTripletFunctions(unittest.TestCase):
             word_triplets_processor.text_open(["non_existent.txt"])
 
     def test_handle_undersized_input(self):  # I would prefer to validate the message return.
+        """How does the program handle input of less than three words?"""
         with self.assertRaises(SystemExit):
             two_words = word_triplets_processor.text_open(["two_word_text.txt"])
             word_triplets_processor.text_transform(two_words)
@@ -49,8 +50,9 @@ class TestWordTripletFunctions(unittest.TestCase):
         processed_sample = word_triplets_processor.text_transform(transform_sample)
         self.assertEqual(processed_sample, ["abc", "def", "ghi", "jkl", "xyz"])
 
-    def test_triple_counter_returns_list_of_tuples(self):  # What is a meaningful test for this functionality?
-        count = word_triplets_processor.triple_count(self.sample)
+    def test_triple_counter_returns_list_of_tuples(self):
+        """Is the output in the expected format?"""
+        count = word_triplets_processor.group_count(self.sample)
         self.assertEqual(count, [('this', 2), ('is', 2), ('a', 2), ('test', 2), ('too', 1)])
 
 
