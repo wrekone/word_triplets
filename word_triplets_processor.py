@@ -63,10 +63,11 @@ def text_triple_maker(arr):
 def triple_count(arr):
     """Count triples and sort by most common."""
     triple_count = Counter(arr).most_common(100)
-    return triple_count
+    print(triple_count)
 
 
-def pipe_out(output_text):
-    """Print processed text to terminal."""
-    for triple in output_text:
-        print(f"{triple}")
+# Print nicely formatted output for human consumption.
+# def pipe_out(output_text):
+#     """Print formatted text to terminal."""
+#     for triple in output_text:
+#         print(f"{triple}")
