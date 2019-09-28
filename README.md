@@ -11,16 +11,16 @@ Usage:
 Example:
 `python3 word_triplets.py moby_dick.txt`
 
-Also accepts streams as input.
+Will also accept streaming input.
 
-Example1:
+Example 1:
 `echo "This is a test" | python3 word_triplets.py`
 
-Example2:
+Example 2:
 `python3 word_triplets.py < origin.txt`
 
 Tests usage: `python3 test_word_triplets.py`
 
-Several example input texts are provided. Examples are provided free of copyright.
+Example input texts are provided. Examples are provided free of copyright.
 
 TODO: allow group size to be set at runtime, allow number of results returned to be set at runtime, allow pretty output option to be set at runtime, improve tests
