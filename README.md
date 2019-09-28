@@ -11,10 +11,13 @@ Usage:
 Example:
 `python3 word_triplets.py moby_dick.txt`
 
-Alternatively, you can pipe text into the program with `cat`, `echo`, etc.
+Also accepts streams as input.
 
-Example:
+Example1:
 `echo "This is a test" | python3 word_triplets.py`
+
+Example2:
+`python3 word_triplets.py < origin.txt`
 
 Tests usage: `python3 test_word_triplets.py`
 
