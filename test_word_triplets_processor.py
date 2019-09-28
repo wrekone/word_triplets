@@ -20,7 +20,7 @@ class TestWordTripletFunctions(unittest.TestCase):
 
     def test_handle_lack_of_input(self):
         """Can the program handle not being passed any input?"""
-        unopened = word_triplets_processor.text_open("")
+        unopened = word_triplets_processor.text_open('')
         self.assertEqual(unopened, "")
 
     def test_returns_groups_of_three(self):
