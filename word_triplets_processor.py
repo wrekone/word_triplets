@@ -1,8 +1,5 @@
-# Import collections to use collections.Counter
 from collections import Counter
-# Import re for regex functions.
 import re
-# Import sys for access to system specific parameters and functions.
 import sys
 
 
@@ -66,8 +63,8 @@ def group_count(arr):
     return count
 
 
-# Print nicely formatted output for human consumption.
 # def pipe_out(output_text):
 #     """Print formatted text to terminal."""
+#     print("The 100 most common word sequences are:")
 #     for triple in output_text:
-#         print(f"{triple}")
+#         print(f"{triple[1]} - {triple[0]}")
