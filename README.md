@@ -11,7 +11,8 @@ Usage:
 Example:
 `python3 word_triplets.py moby_dick.txt`
 
-Will also accept streaming input.
+
+Program will also accept streaming input.
 
 Example 1:
 `echo "This is a test" | python3 word_triplets.py`
