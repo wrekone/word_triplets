@@ -5,10 +5,10 @@ This program assumes proper use of en dashes, em dashes, and hyphens. Hyphens wi
 All single quotes (curly and straight) will be treated as straight quotes. 
 All other punctuation will be ignored. Numerics will be ignored.
 
-Usage: 
-`python3 word_triplets.py TEXTFILE`  
+Usage:
+`python3 word_triplets.py TEXTFILE`
 
-Example: 
+Example:
 `python3 word_triplets.py moby_dick.txt`
 
 Alternatively, you can pipe text into the program with `cat`, `echo`, etc.
@@ -20,4 +20,4 @@ Tests usage: `python3 test_word_triplets.py`
 
 Several example input texts are provided. Examples are provided free of copyright.
 
-TODO: allow group size to be set at runtime, allow number of results returned to be set at runtime, allow raw-output option to be set at runtime, improve tests
+TODO: allow group size to be set at runtime, allow number of results returned to be set at runtime, allow pretty output option to be set at runtime, improve tests
