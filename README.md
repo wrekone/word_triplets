@@ -10,7 +10,6 @@ Usage: `python3 word_triplets.py TEXTFILE`
 
 Example: `python3 word_triplets.py moby_dick.txt`
 
-
 Program will also accept streaming input.
 
 Example 1: `echo "This is a test" | python3 word_triplets.py`
