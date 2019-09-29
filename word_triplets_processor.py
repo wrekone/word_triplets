@@ -35,7 +35,8 @@ def text_input():
 def text_transform(text):
     """Prepare text for processing. Return as list."""
     text = text.lower()
-    text = re.sub(r"[^a-z\-'‘’]+", " ", text)  # Remove punctuation.
+    text = re.sub(r"[’‘]+", "'", text)  # Replace curly quotes with straight.
+    text = re.sub(r"[^a-z\-']+", " ", text)  # Remove punctuation.
     text_arr = text.split()
     if len(text_arr) < 3:  # Check for minimum of 3 words.
         print("Please provide a minimum of three words.")
@@ -63,7 +64,7 @@ def group_count(arr):
     return count
 
 
-# def pipe_out(output_text):
+# def pretty_output(output_text):
 #     """Print formatted text to terminal."""
 #     print("The 100 most common word sequences are:")
 #     for triple in output_text:
