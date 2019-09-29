@@ -41,8 +41,7 @@ def text_transform(text):
     if len(text_arr) < 3:  # Check for minimum of 3 words.
         print("Please provide a minimum of three words.")
         sys.exit()
-    else:
-        return text_arr
+    return text_arr
 
 
 def text_triple_maker(arr):
