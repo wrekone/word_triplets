@@ -1,5 +1,6 @@
 # word_triplets
-Counts occurrences of the 100 most common three word groupings in source text (ASCII only). Returns results as a list of tuples.
+Counts occurrences of the 100 most common three word groupings in source text (ASCII only).
+Outputs results as a list of tuples.
 
 This program assumes proper use of en dashes, em dashes, and hyphens. Hyphens will be retained. Hyphenated words will be treated as single words. En dashes and em dashes will be ignored. 
 All single quotes (curly and straight) will be treated as straight quotes. 
