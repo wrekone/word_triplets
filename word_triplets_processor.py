@@ -24,11 +24,11 @@ def text_input():
         elif sys.argv[1]:
             inputArgs = sys.argv[1:]
             text = text_open(inputArgs)
-        return text
     except IndexError:
         print("Error: Please provide something to process.")
         print("Usage: runner.py [FILE]...")
         sys.exit()
+    return text
 
 
 def text_transform(text):
