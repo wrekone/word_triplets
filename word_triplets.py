@@ -1,8 +1,8 @@
-import word_triplets_processor
+import processor
 
 
-words = word_triplets_processor.text_input()
-word_list = word_triplets_processor.text_transform(words)
-word_triples = word_triplets_processor.text_triple_maker(word_list)
-output = word_triplets_processor.group_count(word_triples)
+words = processor.text_input()
+word_list = processor.text_transform(words)
+word_triples = processor.text_triple_maker(word_list)
+output = processor.group_count(word_triples)
 print(output)
