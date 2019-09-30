@@ -60,10 +60,3 @@ def group_count(arr):
     """Count triples and sort by most common."""
     count = Counter(arr).most_common(100)
     return count
-
-
-# def pretty_output(output_text):
-#     """Print formatted text to terminal."""
-#     print("The 100 most common word sequences are:")
-#     for triple in output_text:
-#         print(f"{triple[1]} - {triple[0]}")
