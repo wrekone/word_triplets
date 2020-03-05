@@ -26,7 +26,7 @@ def text_input():
             text = text_open(inputArgs)
     except IndexError:
         print("Error: Please provide something to process.")
-        print("Usage: runner.py [FILE]...")
+        print("Usage: word_triplets.py [FILE]...")
         sys.exit()
     return text
 
