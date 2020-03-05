@@ -60,3 +60,8 @@ def group_count(arr):
     """Count triples and sort by most common."""
     count = Counter(arr).most_common(100)
     return count
+
+
+
+
+
